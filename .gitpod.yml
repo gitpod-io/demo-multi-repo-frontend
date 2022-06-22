@@ -48,6 +48,7 @@ tasks:
       cd ../backend
     init: |
       echo npm install
+      echo npm run build
     command: |
       echo npm run dev
 
