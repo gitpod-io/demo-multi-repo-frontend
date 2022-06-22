@@ -1,0 +1,61 @@
+## Learn more about this file at 'https://www.gitpod.io/docs/references/gitpod-yml'
+##
+## This '.gitpod.yml' file when placed at the root of a project instructs
+## Gitpod how to prepare & build the project, start development environments
+## and configure continuous prebuilds. Prebuilds when enabled builds a project
+## like a CI server so you can start coding right away - no more waiting for
+## dependencies to download and builds to finish when reviewing pull-requests
+## or hacking on something new.
+##
+## With Gitpod you can develop software from any device (even iPads) via 
+## desktop or browser based versions of VS Code or any JetBrains IDE and
+## customise it to your individual needs - from themes to extensions, you
+## have full control.
+##
+## The easiest way to try out Gitpod is install the browser extenion:
+## 'https://www.gitpod.io/docs/browser-extension' or by prefixing
+## 'https://gitpod.io#' to the source control URL of any project.
+##
+## For example: 'https://gitpod.io#https://github.com/gitpod-io/gitpod'
+
+## The optional 'additionalRepositories' key is an array of repositories
+## which contains two properties which define the source control `url` to
+## clone and the `checkoutLocation` of where the repository is cloned
+## under `/workspaces`
+##
+## Learn more at 'https://www.gitpod.io/docs/multi-repo-workspaces'
+
+additionalRepositories:
+  - url: https://github.com/gitpod-io/demo-multi-repo-backend
+    checkoutLocation: backend
+
+## The 'tasks' section defines how Gitpod prepares and builds this project
+## or how Gitpod can start development servers. With Gitpod, there are three
+## types of tasks:
+##
+## - before: Use this for tasks that need to run before init and before command. 
+## - init: Use this to configure prebuilds of heavy-lifting tasks such as
+##         downloading dependencies or compiling source code.
+## - command: Use this to start your database or application when the workspace starts.
+##
+## Learn more about these tasks at 'https://www.gitpod.io/docs/config-start-tasks'
+
+tasks:
+  - name: backend
+    # change working directory as per configured in `checkoutLocation`
+    # which is configured above as `/workspaces/backend`
+    before: |
+      cd ../backend
+    init: |
+      echo npm install
+    command: |
+      echo npm run dev
+
+    # changing of working directory is not required as these tasks will
+    # by default by executed in `/workspaces/demo-multi-repo-frontend`
+  - name: frontend
+    init: |
+      echo npm install
+      echo npm run build
+    command: |
+      echo npm run dev
