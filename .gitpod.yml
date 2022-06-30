@@ -27,6 +27,8 @@
 
 additionalRepositories:
   - url: https://github.com/gitpod-io/demo-multi-repo-backend
+     # checkoutLocation is optional and relative to /workspaces.
+     # by default the location defaults to the repository name.
     checkoutLocation: backend
 
 ## The 'tasks' section defines how Gitpod prepares and builds this project
